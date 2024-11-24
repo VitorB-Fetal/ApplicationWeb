@@ -7,11 +7,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Controllers\UsuarioController.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="Views\Usuario.cshtml" />
     <Content Remove="wwwroot\css\Login.css" />
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Views\Create\" />
     <Folder Include="Views\Usuario\" />
     <Folder Include="wwwroot\Imagem\" />
   </ItemGroup>

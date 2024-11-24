@@ -6,11 +6,17 @@ namespace Life.Data
     {
         public class LifeDbContext : DbContext
         {
-            public LifeDbContext(DbContextOptions<LifeDbContext> options) : base(options)
+        internal object User;
+
+        public LifeDbContext()
+        {
+        }
+
+        public LifeDbContext(DbContextOptions<LifeDbContext> options) : base(options)
             {
             }
 
          
-            public DbSet<Usuario> Usuarios { get; set; }  
+            public DbSet<User> Usuarios { get; set; }  
         }
     }

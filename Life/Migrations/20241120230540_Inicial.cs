@@ -27,7 +27,7 @@ namespace Life.Migrations
                 });
         }
 
-        /// <inheritdoc />
+      
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(

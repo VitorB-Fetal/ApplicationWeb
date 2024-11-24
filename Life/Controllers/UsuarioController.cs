@@ -24,7 +24,7 @@ namespace Life.Controllers
 
             // Ação para processar o envio do formulário
             [HttpPost]
-            public IActionResult Cadastrar(Usuario usuario)
+            public IActionResult Cadastrar(User usuario)
             {
                 if (ModelState.IsValid)
                 {

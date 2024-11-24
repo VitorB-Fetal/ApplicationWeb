@@ -15,7 +15,7 @@ namespace LifeGreen.Controllers
             if (!string.IsNullOrEmpty(CpfCnpj) && !string.IsNullOrEmpty(Senha))
             {
                 TempData["Mensagem"] = "Login realizado com sucesso!";
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Login", "Login");
             }
 
             TempData["Mensagem"] = "CPF/CNPJ ou Senha inválidos.";
