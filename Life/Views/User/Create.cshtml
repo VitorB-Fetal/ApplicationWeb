@@ -1,109 +1,124 @@
 ﻿@model Life.Models.User
 @{
-       ViewBag.Title = "Cadastrar Usuário";
+    ViewBag.Title = "Cadastrar Usuário";
 }
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
 <style>
     body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f6f9;
-    margin: 0;
-    padding: 0;
-}
+        background-image: url('../C:/Users/Vitor Fetal/Documents/UFO.jfif');
+        font-family: Arial, sans-serif;
+        background-color: #f4f6f9;
+        margin: 0;
+        padding: 0;
+    }
 
+    .container {
+        max-width: 600px;
+        margin: 50px auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
 
-.container {
-    max-width: 600px;
-    margin: 50px auto;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
+    h2 {
+        font-size: 24px;
+        color: #333;
+        text-align: center;
+        margin-bottom: 20px;
+    }
 
-
-h2 {
-    font-size: 24px;
-    color: #333;
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-
-form div {
-    margin-bottom: 15px;
-}
-
-form label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
-    color: #555;
-}
-
-
-form input[type="text"],
-form select {
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-}
-
-    form input[type="text"]:focus,
-    form select:focus {
-        border-color: #007bff;
-        outline: none;
+    .form-control:focus {
+        border-color: darkgreen;
         box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
     }
 
-
-form .field-validation-error {
-    color: #d9534f;
-    font-size: 14px;
-    margin-top: 5px;
-}
-
-
-form button {
-    width: 100%;
-    padding: 12px;
-    background-color: #007bff;
-    color: #fff;
-    font-size: 16px;
-    font-weight: bold;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-    form button:hover {
-        background-color: #0056b3;
+    .btn-primary {
+        width: 100%;
+        padding: 12px;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 5px;
     }
 
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+    .card-footer {
+        margin-top: 20px;
+    }
 </style>
 
-<h2>Cadastrar Usuário</h2>
-@using (Html.BeginForm())
-{
- @Html.AntiForgeryToken()
- <div>
- @Html.LabelFor(model => model.CpfCnpj)
- @Html.TextBoxFor(model => model.CpfCnpj, new { @placeholder = "CPF ou CNPJ" })
- @Html.ValidationMessageFor(model => model.CpfCnpj)
- </div>
- <div>
- @Html.LabelFor(model => model.Nome)
- @Html.TextBoxFor(model => model.Nome, new { @placeholder = "Nome" })
- @Html.ValidationMessageFor(model => model.Nome)
- </div>
- <div>
- @Html.LabelFor(model => model.NichoTrabalho) 
- @Html.DropDownListFor(model => model.NichoTrabalho, new SelectList(ViewBag.Nichos))
-@Html.ValidationMessageFor(model => model.NichoTrabalho)
- </div>
-<button type="submit">Cadastrar</button>
-}
+<div class="container">
+    <h2><i class="fas fa-user-plus"></i> Cadastrar Usuário</h2>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="mb-3">
+            @Html.LabelFor(model => model.CpfCnpj, "CPF ou CNPJ", new { @class = "form-label" })
+            @Html.TextBoxFor(model => model.CpfCnpj, new { @class = "form-control", @placeholder = "Digite o CPF ou CNPJ" })
+            @Html.ValidationMessageFor(model => model.CpfCnpj, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="mb-3">
+            @Html.LabelFor(model => model.Nome, new { @class = "form-label" })
+            @Html.TextBoxFor(model => model.Nome, new { @class = "form-control", @placeholder = "Digite o nome" })
+            @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="mb-3">
+            @Html.LabelFor(model => model.Email, new { @class = "form-label" })
+            @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @placeholder = "Digite o e-mail" })
+            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="mb-3">
+            @Html.LabelFor(model => model.Senha, "Senha", new { @class = "form-label" })
+            @Html.PasswordFor(model => model.Senha, new { @class = "form-control", @placeholder = "Digite a senha" })
+            @Html.ValidationMessageFor(model => model.Senha, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="mb-3">
+            @Html.LabelFor(model => model.NichoTrabalho, "Nicho de Trabalho", new { @class = "form-label" })
+            @Html.DropDownListFor(model => model.NichoTrabalho, new SelectList(ViewBag.Nichos), "-- Selecione um nicho --", new { @class = "form-select" })
+            @Html.ValidationMessageFor(model => model.NichoTrabalho, "", new { @class = "text-danger" })
+        </div>
+
+        <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Cadastrar</button>
+
+        <div class="card-footer text-center">
+            <small>© 2024 GreenLife - Todos os direitos reservados</small>
+        </div>
+    }
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('form').on('submit', function (e) {
+            let isValid = true;
+
+            
+            $('input, select').each(function () {
+                if (!$(this).val()) {
+                    toastr.error('Todos os campos devem ser preenchidos!', 'Erro de Validação'); //Validação de acesso com a biblioteca Toastr
+                    isValid = false;
+                    return false; 
+                }
+            });
+
+            if (!isValid) {
+                e.preventDefault(); 
+            }
+        });
+    });
+</script>

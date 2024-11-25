@@ -16,26 +16,26 @@ namespace Life.Controllers
                 _context = context;
             }
 
-            // Ação para exibir o formulário de cadastro
+            
             public IActionResult Cadastrar()
             {
                 return View();
             }
 
-            // Ação para processar o envio do formulário
+           
             [HttpPost]
             public IActionResult Cadastrar(User usuario)
             {
                 if (ModelState.IsValid)
                 {
-                    _context.Usuarios.Add(usuario);  // Adiciona o usuário ao banco de dados
-                    _context.SaveChanges();  // Salva as alterações no banco de dados
+                    _context.Usuarios.Add(usuario);  
+                    _context.SaveChanges();  
 
                     TempData["Mensagem"] = "Usuário cadastrado com sucesso!";
-                    return RedirectToAction("Cadastrar");  // Redireciona de volta para o formulário
+                    return RedirectToAction("Cadastrar");  
                 }
 
-                return View(usuario);  // Se houver erro de validação, retorna o formulário com os dados preenchidos
+                return View(usuario);  
             }
         }
     }
