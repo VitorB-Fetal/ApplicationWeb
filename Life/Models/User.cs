@@ -15,6 +15,7 @@ namespace Life.Models
         [Required(ErrorMessage = "Selecione o nicho de trabalho.")]
         public string NichoTrabalho { get; set; }
         public string Email { get; set; }
+        public string TelefoneComercial { get; set; }
         public string Senha { get; set; }
         public string CpfOuCnpj { get; set; }
 
