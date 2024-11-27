@@ -1,24 +1,30 @@
 using Microsoft.AspNetCore.Mvc;
-
+using Life.Data;
+using Microsoft.EntityFrameworkCore;
 namespace Life.Controllers
 {
     public class LoginController : Controller
     {
-        public IActionResult Login()
+        private readonly LifeDbContext _context;
+
+        public LoginController(LifeDbContext context)
         {
-            return View(); 
+            _context = context;
         }
 
         [HttpPost]
-        public IActionResult Login(string CpfCnpj, string Senha)
+        public async Task<IActionResult> Login(string cpfCnpj, string senha)
         {
-            if (!string.IsNullOrEmpty(CpfCnpj) && !string.IsNullOrEmpty(Senha))
+            var user = await _context.Usuarios
+                .FirstOrDefaultAsync(u => u.CpfCnpj == cpfCnpj && u.Senha == senha);
+
+            if (user != null)
             {
-                TempData["Mensagem"] = "Login realizado com sucesso!";
-                return RedirectToAction("Login", "Login");
+                // Autenticação bem-sucedida
+                return RedirectToAction("Index", "Home");
             }
 
-            TempData["Mensagem"] = "CPF/CNPJ ou Senha inválidos.";
+            TempData["Mensagem"] = "Credenciais inválidas!";
             return View();
         }
     }

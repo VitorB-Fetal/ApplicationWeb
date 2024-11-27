@@ -1,11 +1,12 @@
-using Life.Data;  
-using Microsoft.EntityFrameworkCore;  
+using Life.Data;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 
 builder.Services.AddDbContext<LifeDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("LifeDbContext")));
+
 
 builder.Services.AddControllersWithViews();
 
