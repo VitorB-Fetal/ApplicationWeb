@@ -171,7 +171,7 @@ namespace Life.Migrations
                 oldType: "nvarchar(max)",
                 oldNullable: true);
 
-            migrationBuilder.AddColumn<string>(
+             migrationBuilder.AddColumn<string>(
                 name: "CpfOuCnpj",
                 table: "Usuarios",
                 type: "nvarchar(max)",

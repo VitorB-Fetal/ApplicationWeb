@@ -28,7 +28,7 @@ namespace Life.Controllers
             {
                 _context.Usuarios.Add(user);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Login", "Login");
+                return RedirectToAction("Create", "Create");
             }
 
             ViewBag.Nichos = new SelectList(_context.Nichos, "Id", "Nome");
@@ -52,7 +52,7 @@ namespace Life.Controllers
             {
                 _context.Update(user);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Login", "Login");
+                return RedirectToAction("Create", "Create");
             }
 
             ViewBag.Nichos = new SelectList(_context.Nichos, "Id", "Nome");
@@ -70,7 +70,7 @@ namespace Life.Controllers
                 await _context.SaveChangesAsync();
             }
 
-            return RedirectToAction("Login", "Login");
+            return RedirectToAction("Create", "Create");
         }
     }
 }
