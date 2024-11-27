@@ -12,6 +12,12 @@ namespace Life.Controllers
             _context = context;
         }
 
+        [HttpGet]
+        public IActionResult Login()
+        {
+            return View(); 
+        }
+
         [HttpPost]
         public async Task<IActionResult> Login(string cpfCnpj, string senha)
         {
@@ -20,8 +26,8 @@ namespace Life.Controllers
 
             if (user != null)
             {
-                // Autenticação bem-sucedida
-                return RedirectToAction("Index", "Home");
+                
+                return RedirectToAction("Login", "Login");
             }
 
             TempData["Mensagem"] = "Credenciais inválidas!";
