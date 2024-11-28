@@ -1,0 +1,28 @@
+﻿@model Life.Models.User
+
+@{
+    ViewData["Title"] = "Editar Usuário";
+}
+
+<div class="container mt-5">
+    <h2>Editar Usuário</h2>
+
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["Success"]
+        </div>
+    }
+
+    <form method="post" asp-action="Editar">
+        <div class="mb-3">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" name="email" value="@Model.Email" readonly />
+        </div>
+        <div class="mb-3">
+            <label for="password">Senha</label>
+            <input type="password" class="form-control" id="password" name="password" value="@Model.Password" required />
+        </div>
+        <button type="submit" class="btn btn-primary">Salvar</button>
+    </form>
+</div>

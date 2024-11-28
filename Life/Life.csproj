@@ -7,6 +7,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\Create\**" />
+    <Compile Remove="Views\Usuario\**" />
+    <Content Remove="Views\Create\**" />
+    <Content Remove="Views\Usuario\**" />
+    <EmbeddedResource Remove="Views\Create\**" />
+    <EmbeddedResource Remove="Views\Usuario\**" />
+    <None Remove="Views\Create\**" />
+    <None Remove="Views\Usuario\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Remove="Controllers\UsuarioController.cs" />
   </ItemGroup>
 
@@ -16,12 +27,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\Create\" />
-    <Folder Include="Views\Usuario\" />
+    <Folder Include="Migrations\" />
     <Folder Include="wwwroot\Imagem\" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="9.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.0" />

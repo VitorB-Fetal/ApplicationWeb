@@ -1,16 +1,25 @@
-using Life.Data;  
-using Microsoft.EntityFrameworkCore;  
+using Life.Data;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Adicione serviços ao contêiner
+builder.Services.AddControllersWithViews();
 
-builder.Services.AddDbContext<LifeDbContext>(options =>
+// Altere para o nome correto do seu contexto: "AppDbContext"
+builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-builder.Services.AddControllersWithViews();
+// Adiciona sessão para armazenar dados do usuário logado
+builder.Services.AddSession(options =>
+{
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
 
 var app = builder.Build();
 
+// Configuração do pipeline HTTP
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
@@ -22,10 +31,13 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+// Ativa a sessão
+app.UseSession();
+
 app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Login}/{action=Login}/{id?}");
+    pattern: "{controller=Login}/{action=Index}/{id?}");
 
 app.Run();

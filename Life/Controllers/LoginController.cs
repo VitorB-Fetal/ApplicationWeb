@@ -1,25 +1,42 @@
+using Life.Data;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Linq;
 
-namespace LifeGreen.Controllers
+public class LoginController : Controller
 {
-    public class LoginController : Controller
+    private readonly AppDbContext _context;
+
+    public LoginController(AppDbContext context)
     {
-        public IActionResult Login()
+        _context = context;
+    }
+
+    [HttpGet]
+    public IActionResult Index()
+    {
+        return View();
+    }
+
+    [HttpPost]
+    public IActionResult Authenticate(string email, string password)
+    {
+        if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
         {
-            return View(); 
+            TempData["Error"] = "Preencha todos os campos!";
+            return RedirectToAction("Index");
         }
 
-        [HttpPost]
-        public IActionResult Login(string CpfCnpj, string Senha)
+        var user = _context.Users.SingleOrDefault(u => u.Email == email && u.Password == password);
+        if (user == null)
         {
-            if (!string.IsNullOrEmpty(CpfCnpj) && !string.IsNullOrEmpty(Senha))
-            {
-                TempData["Mensagem"] = "Login realizado com sucesso!";
-                return RedirectToAction("Login", "Login");
-            }
-
-            TempData["Mensagem"] = "CPF/CNPJ ou Senha inválidos.";
-            return View();
+            TempData["Error"] = "Credenciais inválidas!";
+            return RedirectToAction("Index");
         }
+
+        // Armazena dados do usuário logado em uma sessão
+        HttpContext.Session.SetString("UserEmail", user.Email);
+
+        return RedirectToAction("Editar", "User");
     }
 }

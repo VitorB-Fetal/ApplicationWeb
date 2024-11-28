@@ -1,27 +1,52 @@
 ﻿using Life.Data;
 using Life.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
+
 namespace Life.Controllers
 {
     public class UserController : Controller
     {
-        private readonly LifeDbContext _context = new();
-        public ActionResult Create()
+        private readonly AppDbContext _context;
+
+        public UserController(AppDbContext context)
         {
-            ViewBag.Nichos = new[] { "Mercado", "Mercadinho", "Mercearia", "Hortifruti","Fazenda" };
-            return View();
+            _context = context;
         }
+
+        [HttpGet]
+        public IActionResult Editar()
+        {
+            // Lógica para obter o email do usuário logado
+            var email = HttpContext.Session.GetString("UserEmail");
+
+            if (string.IsNullOrEmpty(email))
+            {
+                return RedirectToAction("Index", "Login");
+            }
+
+            var user = _context.Users.SingleOrDefault(u => u.Email == email);
+
+            if (user == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+
+            return View(user);
+        }
+
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(User user)
+        public IActionResult Editar(User user)
         {
             if (ModelState.IsValid)
             {
-                _context.Usuarios.Add(user);
+                _context.Update(user);
                 _context.SaveChanges();
-                return RedirectToAction("Login", "Login");
+
+                TempData["Success"] = "Dados atualizados com sucesso!";
+                return RedirectToAction("Editar");
             }
-            ViewBag.Nichos = new[] { "Mercado", "Mercadinho", "Mercearia", "Hortifruti","Fazenda" };
+
             return View(user);
         }
     }

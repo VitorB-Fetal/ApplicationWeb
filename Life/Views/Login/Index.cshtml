@@ -1,0 +1,19 @@
+﻿@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="container mt-5">
+    <h2 class="text-center">Login</h2>
+    <form method="post" asp-action="Authenticate">
+        <div class="mb-3">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" name="email" required placeholder="Digite seu email" />
+        </div>
+        <div class="mb-3">
+            <label for="password">Senha</label>
+            <input type="password" class="form-control" id="password" name="password" required placeholder="Digite sua senha" />
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Entrar</button>
+    </form>
+    <p class="mt-3 text-center">Não possui conta? <a asp-action="Index" asp-controller="Cadastro">Cadastre-se</a></p>
+</div>
