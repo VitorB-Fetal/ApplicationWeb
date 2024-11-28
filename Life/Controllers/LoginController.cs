@@ -2,37 +2,43 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 
-public class LoginController : Controller
+namespace Life.Controllers
 {
-    private readonly AppDbContext _context;
-
-    public LoginController(AppDbContext context)
+    public class LoginController : Controller
     {
-        _context = context;
-    }
+        private readonly AppDbContext _context;
 
-    [HttpGet]
-    public IActionResult Index()
-    {
-        return View();
-    }
-
-    [HttpPost]
-    public IActionResult Authenticate(string email, string password)
-    {
-        if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
+        public LoginController(AppDbContext context)
         {
-            TempData["Error"] = "Preencha todos os campos!";
-            return RedirectToAction("Index");
+            _context = context;
         }
 
-        var user = _context.Users.SingleOrDefault(u => u.Email == email && u.Password == password);
-        if (user == null)
+        [HttpGet]
+        public IActionResult Index()
         {
-            TempData["Error"] = "Credenciais inválidas!";
-            return RedirectToAction("Index");
+            return View("Index");
         }
 
-        return RedirectToAction("Edit", "User");
+        [HttpPost]
+        public IActionResult Authenticate(string email, string password)
+        {
+            // Verificar se os campos estão preenchidos
+            if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
+            {
+                TempData["Error"] = "Preencha todos os campos!";
+                return RedirectToAction("Index");
+            }
+
+            // Verificar se as credenciais estão corretas
+            var user = _context.Users.SingleOrDefault(u => u.Email == email && u.Password == password);
+            if (user == null)
+            {
+                TempData["Error"] = "Credenciais inválidas!";
+                return RedirectToAction("Index");
+            }
+
+            // Redirecionar para a Home após autenticação bem-sucedida
+            return RedirectToAction("Index", "Home");
+        }
     }
 }
