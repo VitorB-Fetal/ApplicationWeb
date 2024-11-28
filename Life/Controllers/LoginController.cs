@@ -1,6 +1,5 @@
-using Life.Data;
+Ôªøusing Life.Data;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Linq;
 
 public class LoginController : Controller
@@ -30,13 +29,10 @@ public class LoginController : Controller
         var user = _context.Users.SingleOrDefault(u => u.Email == email && u.Password == password);
         if (user == null)
         {
-            TempData["Error"] = "Credenciais inv·lidas!";
+            TempData["Error"] = "Credenciais inv√°lidas!";
             return RedirectToAction("Index");
         }
 
-        // Armazena dados do usu·rio logado em uma sess„o
-        HttpContext.Session.SetString("UserEmail", user.Email);
-
-        return RedirectToAction("Editar", "User");
+        return RedirectToAction("Edit", "User");
     }
 }

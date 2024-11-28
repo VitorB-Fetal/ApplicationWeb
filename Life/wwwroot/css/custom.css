@@ -1,0 +1,59 @@
+/* Cor do fundo e centralização das páginas */
+body {
+    background-image: url('../Image/Fundo.jpg');
+    background-size: cover; /* A imagem cobrirá toda a tela */
+    background-position: center; /* A imagem será centralizada */
+    background-attachment: fixed; /* A imagem ficará fixa ao rolar a página */
+    margin: 0;
+    padding: 0;
+    height: 100vh; /* A altura do body será 100% da altura da janela */
+}
+
+/* Container centralizado */
+.container {
+    max-width: 500px; /* Largura máxima do contêiner */
+    margin: 50px auto; /* Centraliza o contêiner horizontalmente e dá um espaço superior */
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilizando os botões */
+.btn-block {
+    width: 100%; /* Faz com que o botão ocupe toda a largura disponível */
+    padding: 10px;
+    font-size: 16px;
+    text-align: center;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease; /* Transição suave no hover */
+}
+
+    .btn-block:hover {
+        background-color: #0056b3; /* Cor de fundo mais escura ao passar o mouse */
+    }
+
+/* Texto de links */
+a {
+    color: #007bff; /* Cor do link */
+    text-decoration: none; /* Remove o sublinhado */
+    font-weight: 500;
+    transition: color 0.3s ease; /* Transição suave na mudança de cor */
+}
+
+    a:hover {
+        text-decoration: underline; /* Adiciona o sublinhado ao passar o mouse */
+        color: #0056b3; /* Cor do link no hover */
+    }
+
+/* Cabeçalho */
+h2 {
+    color: #333;
+    font-weight: 600;
+    text-align: center; /* Centraliza o título */
+    font-size: 2rem; /* Tamanho maior para o título */
+    margin-bottom: 20px; /* Espaço inferior */
+}

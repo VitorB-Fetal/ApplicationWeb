@@ -1,28 +1,26 @@
-﻿@model Life.Models.User
-
-@{
+﻿@{
     ViewData["Title"] = "Editar Usuário";
 }
 
 <div class="container mt-5">
-    <h2>Editar Usuário</h2>
-
-    @if (TempData["Success"] != null)
-    {
-        <div class="alert alert-success">
-            @TempData["Success"]
+    <h2 class="text-center">Editar Usuário</h2>
+    <form method="post" asp-action="Update">
+        <div class="mb-3">
+            <label for="name">Nome</label>
+            <input type="text" class="form-control" id="name" name="name" value="@Model.Name" required placeholder="Digite seu nome" />
         </div>
-    }
-
-    <form method="post" asp-action="Editar">
         <div class="mb-3">
             <label for="email">Email</label>
-            <input type="email" class="form-control" id="email" name="email" value="@Model.Email" readonly />
+            <input type="email" class="form-control" id="email" name="email" value="@Model.Email" required placeholder="Digite seu email" />
         </div>
         <div class="mb-3">
             <label for="password">Senha</label>
-            <input type="password" class="form-control" id="password" name="password" value="@Model.Password" required />
+            <input type="password" class="form-control" id="password" name="password" required placeholder="Digite uma nova senha" />
         </div>
-        <button type="submit" class="btn btn-primary">Salvar</button>
+        <div class="mb-3">
+            <label for="confirmPassword">Confirmar Senha</label>
+            <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required placeholder="Confirme sua senha" />
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Atualizar</button>
     </form>
 </div>
