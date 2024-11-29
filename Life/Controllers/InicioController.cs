@@ -14,16 +14,18 @@ namespace Life.Controllers
             _context = context;
         }
 
+        // Ação de GET para carregar os dados do usuário para edição
         [HttpGet]
         public IActionResult Editar(int userId)
         {
             var user = _context.Users.FirstOrDefault(u => u.Id == userId);
             if (user == null)
-                return NotFound();
+                return NotFound(); // Se o usuário não for encontrado, retorna 404
 
-            return View("Editar", user); 
+            return View("Alterar", user); // Retorna a View de edição com os dados do usuário
         }
 
+        // Ação de POST para salvar as alterações
         [HttpPost]
         public IActionResult Editar(User model)
         {
@@ -34,14 +36,14 @@ namespace Life.Controllers
             if (user == null)
                 return Json(new { success = false, message = "Usuário não encontrado." });
 
-            user.Email = model.Email;
             user.Name = model.Name;
             user.Phone = model.Phone;
             user.CPF = model.CPF;
+            user.Email = model.Email;
 
             if (!string.IsNullOrEmpty(model.Password))
             {
-                user.Password = model.Password; // Pode-se adicionar um hash de senha aqui
+                user.Password = model.Password; // Atualiza a senha se fornecida
             }
 
             _context.SaveChanges();

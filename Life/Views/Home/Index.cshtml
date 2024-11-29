@@ -1,99 +1,29 @@
-﻿@{
-    ViewData["Title"] = "Produtos";
-    ViewData["HideNavbar"] = true;
+﻿@model IEnumerable<Life.Models.User> 
+
+@{
+    ViewData["Title"] = "Lista de Usuários";
 }
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <link href="/css/Home.css" rel="stylesheet">
-    <title>@ViewData["Title"]</title>
-</head>
-<body>
-    <div class="d-flex">
-        <!-- Sidebar -->
-        <div class="sidebar">
-            <h3 class="text-center my-4"><i class="fas fa-leaf"></i> Life Green</h3>
-            <a asp-action="Index" asp-controller="Home"><i class="fas fa-home"></i> Inicio</a>
-            <a asp-action="Index" asp-controller="Home"><i class="fas fa-box"></i> Produtos</a>
+<h1>@ViewData["Title"]</h1>
 
-            <!-- Link para editar cadastro, visível para todos os usuários -->
-            <a asp-action="Editar" asp-controller="User" asp-route-id="1">
-                <i class="fas fa-user-edit"></i> Editar Cadastro
-            </a>
-
-            <a asp-action="Index" asp-controller="Login"><i class="fas fa-sign-out-alt"></i> Sair</a>
-        </div>
-
-        <!-- Main Content -->
-        <div class="content p-4">
-            <div class="d-flex justify-content-between align-items-center mb-4">
-                <h2 class="mb-0">Produtos</h2>
-                <a href="#" class="btn btn-primary"><i class="fas fa-plus"></i> Novo Produto</a>
-            </div>
-
-            <!-- Filter and Search -->
-            <div class="card mb-4">
-                <div class="card-body">
-                    <div class="d-flex justify-content-between">
-                        <button class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                            Filtrar por...
-                        </button>
-                        <input type="text" class="form-control w-50" placeholder="Buscar produtos...">
-                    </div>
-                </div>
-            </div>
-
-            <!-- Product Table -->
-            <div class="card">
-                <div class="card-header">
-                    <strong>Disponibilidade:</strong> <span class="badge bg-success">Em catálogo</span>
-                </div>
-                <div class="card-body">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Código</th>
-                                <th>Nome do Produto</th>
-                                <th>Preço</th>
-                                <th>Categoria</th>
-                                <th>Ações</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><input type="checkbox"></td>
-                                <td>435G</td>
-                                <td><a href="#">Controladora AMC</a></td>
-                                <td>R$ 50,00</td>
-                                <td>Combustíveis</td>
-                                <td>
-                                    <a href="#" class="btn btn-sm btn-secondary"><i class="fas fa-edit"></i> Editar</a>
-                                    <a href="#" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> Excluir</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox"></td>
-                                <td>189L</td>
-                                <td><a href="#">Galão Óleo 10L</a></td>
-                                <td>R$ 120,00</td>
-                                <td>Óleos</td>
-                                <td>
-                                    <a href="#" class="btn btn-sm btn-secondary"><i class="fas fa-edit"></i> Editar</a>
-                                    <a href="#" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> Excluir</a>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+<table class="table">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Telefone</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.Id</td>
+                <td>@user.Name</td>
+                <td>@user.Email</td>
+                <td>@user.Phone</td>
+            </tr>
+        }
+    </tbody>
+</table>

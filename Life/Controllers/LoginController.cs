@@ -1,5 +1,6 @@
 ﻿using Life.Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 using System.Linq;
 
 namespace Life.Controllers
@@ -44,9 +45,12 @@ namespace Life.Controllers
                 return RedirectToAction("Index");
             }
 
-            // Se as credenciais estiverem corretas, redireciona para a Home
+            // Armazenar o ID do usuário na sessão
+            HttpContext.Session.SetInt32("UserId", user.Id);
+
+            // Se as credenciais estiverem corretas, redireciona para a página de edição
             TempData["Success"] = "Acesso realizado com sucesso!";
-            return RedirectToAction("Index", "Home", new { id = user.Id });
+            return RedirectToAction("Editar", "Alterar"); // Redireciona para o controlador Alterar, ação Editar
         }
     }
 }
