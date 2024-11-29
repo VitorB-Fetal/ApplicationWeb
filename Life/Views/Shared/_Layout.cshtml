@@ -4,47 +4,81 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"]</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/custom.css" />
-    <link rel="stylesheet" href="~/LIFE.styles.css" asp-append-version="true" />
 
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="~/css/custom.css" />
+    <link rel="stylesheet" href="~/Login.styles.css" asp-append-version="true" />
+
+    <!-- Font Awesome Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Login" asp-action="Index">LIFE</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                <!-- Brand/Logo -->
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                    <i class="fas fa-leaf"></i> LIFE
+                </a>
+
+                <!-- Navbar Toggler for mobile view -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+
+                <!-- Navbar links -->
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Index">Login</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">
+                                <i class="fas fa-home"></i> Início
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Cadastro" asp-action="Index">Cadastro</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Index">
+                                <i class="fas fa-sign-in-alt"></i> Login
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="#" asp-action="#">Politica da Empresa</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Cadastro" asp-action="Index">
+                                <i class="fas fa-user-plus"></i> Cadastro
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Inicio" asp-action="Editar">
+                                <i class="fas fa-user-edit"></i> Editar Cadastro
+                            </a>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
+
+    <!-- Main Content Area -->
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2024 - LIFE
-        </div>
-    </footer>
+    <!-- Footer -->
+    <div class="footer">
+        <ul class="social-links">
+            <li><a href="https://www.instagram.com" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a></li>
+            <li><a href="https://www.facebook.com" target="_blank" class="social-icon"><i class="fab fa-facebook"></i></a></li>
+            <li><a href="mailto:contato@life-green.com" class="social-icon"><i class="fas fa-envelope"></i></a></li>
+            <li><a href="https://www.youtube.com" target="_blank" class="social-icon"><i class="fab fa-youtube"></i></a></li>
+        </ul>
+    </div>
+
+
+    <!-- Scripts -->
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

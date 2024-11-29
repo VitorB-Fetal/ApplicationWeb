@@ -1,0 +1,87 @@
+﻿body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+}
+
+.sidebar {
+    width: 230px;
+    background-color: #343a40;
+    color: white;
+    height: 90vh;
+    padding: 20px 10px;
+    position: fixed;
+    top: 55px;
+    left: 0px;
+    display: flex;
+    flex-direction: column;
+}
+
+    .sidebar a {
+        color: white;
+        text-decoration: none;
+        padding: 10px;
+        margin: 5px 0;
+        display: block;
+        border-radius: 5px;
+    }
+
+        .sidebar a:hover, .sidebar a.active {
+            background-color: #495057;
+        }
+
+.content {
+    margin-left: 260px;
+    flex: 1;
+}
+
+.table {
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.card {
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    background-color: #343a40;
+    color: white;
+}
+
+/* Footer with social media icons */
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #343a40;
+    padding: 10px 0;
+    text-align: center;
+    z-index: 1000;
+}
+
+    .footer ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+    }
+
+        .footer ul li {
+            margin: 0 10px;
+        }
+
+.social-icon {
+    color: white;
+    font-size: 24px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+    .social-icon:hover {
+        color: #007bff;
+    }

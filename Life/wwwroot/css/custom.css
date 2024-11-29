@@ -57,3 +57,39 @@ h2 {
     font-size: 2rem; /* Tamanho maior para o título */
     margin-bottom: 20px; /* Espaço inferior */
 }
+
+
+/* Footer with social media icons */
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #343a40;
+    padding: 10px 0;
+    text-align: center;
+    z-index: 1000;
+}
+
+    .footer ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+    }
+
+        .footer ul li {
+            margin: 0 10px;
+        }
+
+.social-icon {
+    color: white;
+    font-size: 24px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+    .social-icon:hover {
+        color: #007bff;
+    }

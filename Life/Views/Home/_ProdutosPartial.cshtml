@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Life.Models.Produto>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Código</th>
+            <th>Nome do Produto</th>
+            <th>Preço</th>
+            <th>Categoria</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var produto in Model)
+        {
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>@produto.Codigo</td>
+                <td><a href="#">@produto.Nome</a></td>
+                <td>R$ @produto.Preco</td>
+                <td>@produto.Categoria</td>
+                <td>
+                    <a href="#" class="btn btn-sm btn-secondary"><i class="fas fa-edit"></i> Editar</a>
+                    <a href="#" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> Excluir</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

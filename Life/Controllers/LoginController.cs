@@ -16,29 +16,37 @@ namespace Life.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            return View("Index");
+            return View();
         }
 
         [HttpPost]
         public IActionResult Authenticate(string email, string password)
         {
-            // Verificar se os campos estão preenchidos
+            // Verificar se os campos estão vazios
             if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
             {
                 TempData["Error"] = "Preencha todos os campos!";
                 return RedirectToAction("Index");
             }
 
-            // Verificar se as credenciais estão corretas
-            var user = _context.Users.SingleOrDefault(u => u.Email == email && u.Password == password);
+            // Verificar se o email está correto
+            var user = _context.Users.SingleOrDefault(u => u.Email == email);
             if (user == null)
             {
-                TempData["Error"] = "Credenciais inválidas!";
+                TempData["Error"] = "Email incorreto!";
                 return RedirectToAction("Index");
             }
 
-            // Redirecionar para a Home após autenticação bem-sucedida
-            return RedirectToAction("Index", "Home");
+            // Verificar se a senha está correta
+            if (user.Password != password)
+            {
+                TempData["Error"] = "Senha incorreta!";
+                return RedirectToAction("Index");
+            }
+
+            // Se as credenciais estiverem corretas, redireciona para a Home
+            TempData["Success"] = "Acesso realizado com sucesso!";
+            return RedirectToAction("Index", "Home", new { id = user.Id });
         }
     }
 }
