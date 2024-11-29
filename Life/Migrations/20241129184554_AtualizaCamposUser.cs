@@ -2,10 +2,10 @@
 
 #nullable disable
 
-namespace LIFE.Migrations
+namespace Life.Migrations
 {
     /// <inheritdoc />
-    public partial class CriarTabelaUsers : Migration
+    public partial class AtualizaCamposUser : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

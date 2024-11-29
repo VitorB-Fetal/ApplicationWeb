@@ -8,11 +8,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace LIFE.Migrations
+namespace Life.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241129183151_Atualiza2caoDeUser")]
-    partial class Atualiza2caoDeUser
+    [Migration("20241129184554_AtualizaCamposUser")]
+    partial class AtualizaCamposUser
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
